@@ -13,13 +13,17 @@ The workflow covers model training, evaluation, and external validation. The tra
 | Scaler_Rutile_DS2.pkl | Fitted MinMaxScaler |
 
 **Notebooks**
+
 **Code-1.ipynb**
 Trains and benchmarks six regression models — LightGBM, GBR, XGBoost, RFR, MLP, and SVR — on Rutile-DS-1.xlsx using 25 trace elements as input features and calibrated temperature as the target.
+
 **Code-2.ipynb**
 Trains an RFR on Rutile-DS-2.xlsx using four features: Zr, Hf, Th, and U. This is the final model recommended for general use.
+
 **Code-3.ipynb**
 Applies the Code-2 RFR to an independent dataset (Rutile-DS-3.xlsx) for external validation without retraining.
 Also serves as a template for applying the model to any new dataset — change the input file path and run.
+
 **Zirconium_Excluded.ipynb**
 Retrains all six models with Zr excluded to assess performance when Zr measurements are unavailable.
 
