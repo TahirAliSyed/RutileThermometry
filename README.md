@@ -35,4 +35,4 @@ A working example is in Code-3.ipynb and can be adapted by changing the input fi
 For cases where Zr measurements are unavailable, refer to Zirconium_Excluded.ipynb. 
 
 **Dependencies**
-pip install pandas numpy scikit-learn lightgbm xgboost matplotlib seaborn shap joblib openpyxl
+pandas, numpy, scikit-learn, lightgbm, xgboost, matplotlib, seaborn, shap, joblib, openpyxl
