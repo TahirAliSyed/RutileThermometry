@@ -6,33 +6,36 @@ The workflow covers model training, evaluation, and external validation. The tra
 **Repository Contents**
 | File | Description |
 | --- | --- |
-| Code-1.ipynb | Multi-model training and evaluation |
-| Code-2.ipynb | Final RFR model training |
-| Code-3.ipynb | External validation and prediction template |
-| Zirconium_Excluded.ipynb | Ablation study without Zr |
-| RFR_Rutile_DS2.pkl | Trained RFR model checkpoint |
-| Scaler_Rutile_DS2.pkl | Fitted MinMaxScaler |
+| Code-1.ipynb | Multi-model training and evaluation using Rutile-DS-1 |
+| Code-2.ipynb | RFR model trained on Rutile-DS-2 |
+| Code-3.ipynb | External validation using Rutile-DS-3 |
+| Zirconium-Excluded (24-elements) RFR.ipynb | Ablation study without Zr |
+| Zirconium-Excluded (3-elements) RFR.ipynb | RFR model trained on Hf, U, Th |
+| RFR_Rutile_DS2.pkl | Trained RFR model checkpoint (Zr, Hf, U, Th) |
+| Fitted MinMaxScaler instances|
 
 **Notebooks**
 
-**Code-1.ipynb:**
-Trains and benchmarks six regression models — LightGBM, GBR, XGBoost, RFR, MLP, and SVR — on Rutile-DS-1.xlsx using 25 trace elements as input features and calibrated temperature as the target.
+**Code-1:**
+Trains and benchmarks six regression models — LightGBM, GBR, XGBoost, RFR, MLP, and SVR — on Rutile-DS-1.xlsx using 25 trace elements as input features and calibrated temperatures as the target.
 
-**Code-2.ipynb:**
-Trains an RFR on Rutile-DS-2.xlsx using four features: Zr, Hf, Th, and U. This is the final model recommended for general use.
+**Code-2:**
+Trains an RFR model on Rutile-DS-2.xlsx using four features: Zr, Hf, Th, and U. **This is the final model that can be used for routine rutile thermometry.**
 
-**Code-3.ipynb:**
-Applies the Code-2 RFR to an independent dataset (Rutile-DS-3.xlsx) for external validation without retraining.
+**Code-3:**
+Applies the pretrained RFR model to an independent dataset (Rutile-DS-3) for external validation without retraining.
 Also serves as a template for applying the model to any new dataset — change the input file path and run.
 
-**Zirconium_Excluded.ipynb:**
-Retrains all six models with Zr excluded to assess performance when Zr measurements are unavailable.
+**Zirconium-Excluded (24-elements) RFR:**
+Retrains RFR with Zr excluded from feature set to assess application potential when Zr measurements are unavailable. **This model is recommended for use where rutile lacks Zr or Zr concentration is below detection limit. This model yields temperature estimates with uncertainity of ~±30°C relative to full suite Zr-in-rutile thermometer.**
 
-**Instruction for Applying the Model to New Data:**
-To apply the Random Forest Regressor (RFR) developed in this study, the input dataset must contain the four trace element columns Zr, Hf, Th, and U.
-Scale the features using the provided scaler (Scaler_Rutile_DS2.pkl) and run prediction using the provided model (RFR_Rutile_DS2.pkl).The provided scaler must always be used as-is.
-A working example is in Code-3.ipynb and can be adapted by changing the input file path.
-For cases where Zr measurements are unavailable, refer to Zirconium_Excluded.ipynb. 
+**Zirconium-Excluded (3-elements) RFR:**
+Trains an RFR model on 3 features including Hf, Th, and U. **This model can also be used in Zr-undersaturated systems and can yield temperature estimates with uncertainity of ~±38°C.**
+
+**Instruction for applying the model to new data:**
+To apply the pretrained RFR model to new rutile trace‑element data, use the provided model and scaler checkpoints.
+A working example is in Code-3 and can be adapted by changing the input.
+For cases where Zr measurements are unavailable, or analystically compromised, Zr-excluded RFR model checkpoints can be used following same route.
 
 **Dependencies:**
 pandas, numpy, scikit-learn, lightgbm, xgboost, matplotlib, seaborn, shap, joblib, openpyxl
