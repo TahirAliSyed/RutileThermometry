@@ -11,7 +11,7 @@ The workflow covers model training, evaluation, and external validation. The tra
 | Code-3.ipynb | External validation using Rutile-DS-3 |
 | Zirconium-Excluded (24-elements) RFR.ipynb | Ablation study without Zr |
 | Zirconium-Excluded (3-elements) RFR.ipynb | RFR model trained using Hf, U, Th |
-| RFR_Rutile_DS2.pkl | Trained RFR model checkpoint (Zr, Hf, U, Th) |
+| Random Forest Checkpoints | Trained RFR model checkpoint under different feature configurations |
 | Fitted MinMaxScaler instances|
 
 **Notebooks**
